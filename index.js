@@ -19,5 +19,35 @@ inquirer
 ])
 
 function addManager() {
-    inquirer.prompt
+    inquirer.prompt([
+    {   type: "input",
+        name: "ManagerName",
+        message: "What is this Manager's name?",
+    },
+    {
+        type: "input",
+        name: "ManagerID",
+        message: "What is this Manager's ID?",
+    },
+    {
+        type: "input",
+        name: "ManagerOfficeNumber",
+        message: "What is this Manager's Office Number?",
+    },
+
+    ]).then(data =>{
+        const NewManager = NewManager
+    }
+}
+
+function addEngineer(){
+    inquirer.prompt([
+    {   
+        type: "input",
+        name: "Github",
+        message: "What is your Github username?",
+
+
+    }    
+    ])
 }
