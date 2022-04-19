@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/klmitchy/Employee-Dir/issues"
   },
-  "homepage": "https://github.com/klmitchy/Employee-Dir#readme"
+  "homepage": "https://github.com/klmitchy/Employee-Dir#readme",
+  "dependencies": {
+    "inquirer": "^8.2.2",
+    "jest": "^27.5.1"
+  }
 }

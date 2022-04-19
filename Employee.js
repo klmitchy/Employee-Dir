@@ -1,4 +1,27 @@
-const questions = [
+class Employee {
+  constructor(Name, ID, Email){
+    this.Name = Name;
+    this.ID = ID;
+    this.Email = Email
+  }
+
+  getName(){
+    return this.name
+  }
+
+  getID(){
+    return this.ID
+  }
+
+  getEmail(){
+    return Email
+  }
+
+  getRole(){
+    return Employee
+  }
+  
+questions = [
     inquirer
     .prompt([
       {
@@ -30,4 +53,5 @@ const questions = [
           }
       })
   })]
-      
+} 
+  module.export=Employee

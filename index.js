@@ -3,9 +3,11 @@ const jest = require('jest')
 const path = require("path");
 const fs = require('fs');
 
+const Employee = require('./Employee.js').default
 const Engineer = require('./Engineer.js');
 const Intern = require('./Intern.js');
 const Manager = require('./Manager.js');
+const TeamArray = [];
 
 inquirer
 .prompt([
@@ -20,10 +22,6 @@ inquirer
 
 function addManager() {
     inquirer.prompt([
-    {   type: "input",
-        name: "ManagerName",
-        message: "What is this Manager's name?",
-    },
     {
         type: "input",
         name: "ManagerID",
@@ -36,9 +34,11 @@ function addManager() {
     },
 
     ]).then(data =>{
-        const NewManager = NewManager
-    }
-}
+        const FreshManager = NewManager (data.ManagerID, data.ManagerOfficeNumber);
+        TeamArray.push(FreshManager);
+        addCards();
+    }),
+
 
 function addEngineer(){
     inquirer.prompt([
@@ -47,7 +47,28 @@ function addEngineer(){
         name: "Github",
         message: "What is your Github username?",
 
+    }, 
 
-    }    
-    ])
+    ]).then(data =>{
+        const FreshEngineer = NewEngineer (data.Github);
+        TeamArray.push(FreshEngineer);
+        addCards();
+    })
+}}
+
+function addIntern(){
+    inquirer.prompt([
+     {
+         type: "input",
+         name: "school",
+         message: "What school do you go to?",
+     },   
+    ]).then(data =>{
+        const FreshIntern = NewIntern (data.school);
+        TeamArray.push(FreshIntern);
+        addCards();
+    })
+
 }
+
+function addCards()
