@@ -24,4 +24,4 @@ test ("MAke sure the role is grabbed from the getRole METHOD",()=>{
     expect(Employee.getRole().toBe("Employee"));
 });
 
-
+module.exports = Employee

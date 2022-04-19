@@ -20,8 +20,10 @@ class Employee {
   getRole(){
     return Employee
   }
+
+  module.export=Employee;
   
-questions = [
+/*questions = [
     inquirer
     .prompt([
       {
@@ -53,5 +55,4 @@ questions = [
           }
       })
   })]
-} 
-  module.export=Employee
+}*/ 
