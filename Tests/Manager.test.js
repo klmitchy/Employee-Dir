@@ -29,4 +29,4 @@ test ("MAke sure the role is grabbed from the getRole METHOD",()=>{
     expect(Manager.getRole().toBe("Manager"));
 });
 
-module.exports = Manager
+module.export = Manager

@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const jest = require('jest')
+//const jest = require('jest')
 const path = require("path");
 const fs = require('fs');
 
@@ -7,7 +7,7 @@ const Employee = require('./Employee.js').default
 const Engineer = require('./Engineer.js');
 const Intern = require('./Intern.js');
 const Manager = require('./Manager.js');
-const TeamArray = [];
+const TeamMembersArray = [];
 
 inquirer
 .prompt([

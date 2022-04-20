@@ -6,13 +6,14 @@ class Intern extends Employee {
     this.School = School;
     
   }
-}
+
 getSchool(){
   return this.School;
-};
+}
 
 getRole(){
   return "Intern"
-};
+}
+}
 
 module.export = Intern;
