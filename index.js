@@ -1,32 +1,45 @@
 const inquirer = require('inquirer');
-//const jest = require('jest')
+const jest = require('jest')
 const path = require("path");
 const fs = require('fs');
 
-const Employee = require('./Employee.js').default
+const Employee = require('./Employee.js');
 const Engineer = require('./Engineer.js');
 const Intern = require('./Intern.js');
 const Manager = require('./Manager.js');
-const TeamMembersArray = [];
+const TeamArray = [];
+const GenHTML = require('./GenHTML.js');
 
-inquirer
-.prompt([
+const questions = () => {
+    return inquirer.prompt([
     {
         type: 'list',
         name: 'AddEmployee',
         message: 'What level of Employee would you like to add?',
-        choices: ["Manager", "Intern", "Engineer"]
-    },
+        choices: ["Manager", "Intern", "Engineer", "Team Complete"]
+    }])
+    .then(userChoice => {
+        switch(userChoice.list) {
+            case "Manager":
+                addManager();
+                break;
+            case "Intern":
+                addIntern();
+                break;
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Team Completed":
 
-])
 
+
+        }
+    }
+
+)
+//add new manager
 function addManager() {
     inquirer.prompt([
-    {
-        type: "input",
-        name: "ManagerID",
-        message: "What is this Manager's ID?",
-    },
     {
         type: "input",
         name: "ManagerOfficeNumber",
@@ -34,12 +47,12 @@ function addManager() {
     },
 
     ]).then(data =>{
-        const FreshManager = NewManager (data.ManagerID, data.ManagerOfficeNumber);
+        const FreshManager = NewManager (data.ManagerOfficeNumber);
         TeamArray.push(FreshManager);
         addCards();
     }),
 
-
+//add new engineer
 function addEngineer(){
     inquirer.prompt([
     {   
@@ -55,7 +68,7 @@ function addEngineer(){
         addCards();
     })
 }}
-
+//add new intern
 function addIntern(){
     inquirer.prompt([
      {
