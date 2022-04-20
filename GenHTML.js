@@ -1,3 +1,36 @@
+const genHTML = (data) =>
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>Employee Team Roster</title>
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">My Team</h1>
+        </div>
+      </div>
+
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">${Manager.Name}</div>
+        <div class="card-body">
+          <h5 class="card-title">${Manager.ID}</h5>
+          <p class="card-text">${Manager.Email}</p>
+          <p class="card-text">${Manager.ManagerOfficeNumber}</p>
+        </div>
+    
+</body>
+</html>`
+
+
+
+
 /*1. Create file structure based on the readme.md file
 
 2. Build out classes for each of the following:

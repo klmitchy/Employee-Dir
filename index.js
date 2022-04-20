@@ -3,15 +3,16 @@ const jest = require('jest')
 const path = require("path");
 const fs = require('fs');
 
-const Employee = require('./Employee.js');
-const Engineer = require('./Engineer.js');
-const Intern = require('./Intern.js');
-const Manager = require('./Manager.js');
+const Employee = require('./Lib/Employee.js');
+const Engineer = require('./Lib/Engineer.js');
+const Intern = require('./Lib/Intern.js');
+const Manager = require('./Lib/Manager.js');
 const TeamArray = [];
 const GenHTML = require('./GenHTML.js');
 
-const questions = () => {
-    return inquirer.prompt([
+//const questions = () => {
+    //return 
+    inquirer.prompt([
     {
         type: 'list',
         name: 'AddEmployee',
@@ -29,10 +30,9 @@ const questions = () => {
             case "Engineer":
                 addEngineer();
                 break;
-            case "Team Completed":
-
-
-
+            case "Team Complete":
+                buildTeam();
+                break;
         }
     }
 
@@ -82,6 +82,17 @@ function addIntern(){
         addCards();
     })
 
+}}
+//team members complete
+function buildTeam(){
+    fs.writeFile(path.join(__dirname, 'dist/Roster.html'), GenHTML({...answers}), function(err){
+    if (err) {
+        console.log(err);
+    }
+    else{
+        console.log('addedData');
+    }
+})
 }
 
-function addCards()
+//function addCards()

@@ -20,8 +20,8 @@ class Employee {
   getRole(){
     return Employee
   }
-
-  module.export=Employee;
+}
+module.export=Employee;
   
 /*questions = [
     inquirer
