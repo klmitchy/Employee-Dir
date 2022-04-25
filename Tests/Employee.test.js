@@ -1,5 +1,5 @@
 const Test = require('jest');
-const Employee = require('../Lib/Employee.js');
+const Employeefile = require('../Lib/Employee.js');
 const Employee = NewEmployee ("Bob", "123", "bob@hotmail.com");
 
 

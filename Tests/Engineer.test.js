@@ -1,6 +1,6 @@
 const Test = require('jest');
-const Engineer = require('./Engineer.js');
-const Engineer = NewEngineer ("Bob", "123", "bob@hotmail.com", "bobby@github");
+const Engineerfile = require('../Lib/Engineer.js');
+const Engineer = Engineer ("Bob", "123", "bob@hotmail.com", "bobby@github");
 
 test ("Make sure constructor will grab values for new employee OBJECT",()=>{
     expect(Engineer.Name).toBe("Bob");

@@ -18,11 +18,13 @@ const genHTML = (data) =>
       </div>
 
       <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header">${Manager.Name}</div>
+        <div class="card-header">${answers.Name}</div>
         <div class="card-body">
-          <h5 class="card-title">${Manager.ID}</h5>
-          <p class="card-text">${Manager.Email}</p>
-          <p class="card-text">${Manager.ManagerOfficeNumber}</p>
+          <h5 class="card-title">${answers.ID}</h5>
+          <p class="card-text">${answers.Email}</p>
+          <p class="card-text">${answers.ManagerOfficeNumber}</p>
+          <p class="card-text">${answers.school}</p>
+          <p class="card-text">${answers.github}
         </div>
     
 </body>

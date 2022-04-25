@@ -1,5 +1,5 @@
 const Test = require('jest');
-const Intern = require('./Intern.js');
+const Internfile = require('./Lib/Intern.js');
 const Intern = NewIntern ("Bob", "123", "bob@hotmail.com", "UofMN");
 
 test ("Make sure constructor will grab values for new employee OBJECT",()=>{

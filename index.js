@@ -2,17 +2,60 @@ const inquirer = require('inquirer');
 const path = require("path");
 const fs = require('fs');
 
-//const {Employee} = require('./Lib/Employee.js');
-const {Engineer} = require('./Lib/Engineer.js');
-const {Intern} = require('./Lib/Intern.js');
-const {Manager} = require('./Lib/Manager.js');
+//const Employee = require('../Lib/Employee.js');
+const Engineer = require('./Lib/Engineer.js');
+const Intern = require('./Lib/Intern.js');
+const Manager = require('./Lib/Manager.js');
 const TeamArray = [];
 const GenHTML = require('./GenHTML.js');
+const genHTML = require('./GenHTML.js');
+let TeamComplete = false;
+const validateinput = (userinput) =>{
+    if (userinput ===""){
+        return "please answer before proceeding";
+    }else{
+        return true;
+    }
+    };
+const init = async () => {
+    await createManager();
+    while (!TeamComplete){
+        const typeofemployee = [
+            {
+                type: 'list',
+                name: 'employeeType',
+                message: 'What level of Employee would you like to add?',
+                choices: ["Manager", "Intern", "Engineer", "Team Complete"],
+              },
 
-const questions = async () => {
-    const answers = await inquirer
+        ];
+    
+const {employeeType} = await inquirer.prompt(typeofemployee);
+if (employeeType === "Team Complete") {
+    TeamComplete = true;
+}else{
+    if (employeeType === "Intern"){
+        await addIntern();
+    }
+    if (employeeType === "Engineer"){
+        await addEngineer();
+    }
+    }
+}
 
-    .prompt([
+const HTML = genHTML(employees);
+fs.writeFileSync("employee-roster.html", HTML, (err) => {
+    if (err){
+        console.log(err);
+    }else{
+        console.log("File Created");
+    }
+});
+};
+
+
+const managerQuestions = [
+    
       {
         type: 'input',
         name: 'Name',
@@ -21,7 +64,7 @@ const questions = async () => {
       {
         type: 'input',
         name: 'ID',
-        message: 'What is your ID?',
+        message: 'What is your Employee ID?',
       },
       {
         type: 'input',
@@ -29,13 +72,20 @@ const questions = async () => {
         message: 'What is your email?',
       },
       {
-        type: 'list',
-        name: 'AddEmployee',
-        message: 'What level of Employee would you like to add?',
-        choices: ["Manager", "Intern", "Engineer", "Team Complete"],
-      }
+        type: 'input',
+        name: 'officeNumber',
+        message: 'What is your Office Number?',
+      },
+    ];
+
+    const managerAnswers = await inquirer.prompt(managerQuestions);
+
+    const manager = new Manager(managerAnswers);
+
+    employees.push(manager);
       
-    ]).then(addEmployee => {
+      
+   /* ]).then(addEmployee => {
         switch(addEmployee.list) {
             case "Manager":
                 addManager();
@@ -50,10 +100,10 @@ const questions = async () => {
                 buildTeam();
                 break;
         }
-    }
+    }*/
 
 )
-//add new manager
+/*add new manager
     function addManager(){
         inquirer.prompt([
         {
@@ -72,7 +122,7 @@ const questions = async () => {
             TeamArray.push(NewManager);
             
     }
-
+*/
 
 //add new engineer
     function addEngineer(){
@@ -112,10 +162,22 @@ function addIntern(){
         TeamArray.push(NewIntern);
         }
         
-    
+        
 //team members complete
 function buildTeam(){
-    fs.writeFileSync('dist/Roster.html'), GenHTML({...answers}), function(err){
+    fs.writeFileSync('./dist/Roster.html'), GenHTML(TeamArray), "utf-8"
+
+}
+}
+
+const data = 'Hello Node.js';
+fs.writeFile('message.txt', data, (err) => {
+  if (err) throw err;
+  console.log('Ready to view your team!');
+  //file written successfully
+});
+    
+    /*function(err){
     if (err) {
         console.log(err);
     }
@@ -123,4 +185,20 @@ function buildTeam(){
         console.log('addedData');
     }
     }
-}}
+}}*/
+
+/*try {
+    fs.writeFileSync(path, data,{flag:'a+'});   //'a+' is append mode
+    console.log("File written successfully");
+  } catch(err) {
+    console.error(err);
+  }
+  console.log("-----------------------------------------------");
+  try{
+  const data = fs.readFileSync(path,{encoding: "utf8"}); 
+    console.log("File content is as follows:");
+    // Display the file data 
+    console.log(data); 
+  }catch(err){
+  console.log(err);
+  }*/
