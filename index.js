@@ -7,7 +7,7 @@ const Engineer = require('./Lib/Engineer.js');
 const Intern = require('./Lib/Intern.js');
 const Manager = require('./Lib/Manager.js');
 
-const genHTML = require('./GenHTML.js');
+const GenHTML = require('./GenHTML.js');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "teamroster.html");
 const TeamArray = [];
@@ -150,10 +150,27 @@ const buildTeam = () => {
     if (!fs.existsSync(OUTPUT_DIR)){
         fs.mkdirSync(OUTPUT_DIR) 
     }
-    fs.writeFiileSync(outputPath, genHTML(TeamArray), "utf-8");
+    fs.writeFileSync(outputPath, GenHTML(TeamArray), "utf-8");
 }
 
 managerprompt();
+
+/*try {
+    fs.writeFileSync(path, data,{flag:'a+'});   //'a+' is append mode
+    console.log("File written successfully");
+  } catch(err) {
+    console.error(err);
+  }
+  console.log("-----------------------------------------------");
+  try{
+  const data = fs.readFileSync(path,{encoding: "utf8"}); 
+    console.log("File content is as follows:");
+    // Display the file data 
+    console.log(data); 
+  }catch(err){
+  console.log(err);
+  }*/
+
 /*let TeamComplete = false;
 
 const init = async () => {
