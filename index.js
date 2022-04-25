@@ -8,8 +8,8 @@ const Intern = require('./Lib/Intern.js');
 const Manager = require('./Lib/Manager.js');
 
 const GenHTML = require('./GenHTML.js');
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "teamroster.html");
+//const OUTPUT_DIR = path.resolve(__dirname, "output");
+//const outputPath = path.join(OUTPUT_DIR, "teamroster.html");
 const TeamArray = [];
 const validateinput = (userinput) =>{
     if (userinput ===""){
@@ -146,13 +146,35 @@ const addIntern = () => {
 };
 
 const buildTeam = () => {
+
+    fs.writeFileSync('./dist/index.html', generateHTML(answers));
+    console.log('Successfully wrote to index.html');
+   // catch((err) => console.error(err));
+};
+
+managerprompt();
     
-    if (!fs.existsSync(OUTPUT_DIR)){
+  /*  if (!fs.existsSync(OUTPUT_DIR)){
         fs.mkdirSync(OUTPUT_DIR) 
     }
     fs.writeFileSync(outputPath, GenHTML(TeamArray), "utf-8");
 }
 
+.then((answers) => {
+    const htmlPageContent = generateHTML(answers);
+
+    fs.writeFile('index.html', htmlPageContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created index.html!')
+    );
+  });
+
+  const init = () => {
+    promptUser()
+      // Use writeFileSync method to use promises instead of a callback function
+      .then((answers) => fs.writeFileSync('index.html', generateHTML(answers)))
+      .then(() => console.log('Successfully wrote to index.html'))
+      .catch((err) => console.error(err));
+  };
 managerprompt();
 
 /*try {
