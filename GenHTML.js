@@ -1,4 +1,28 @@
-const genHTML = (data) =>
+const fs = require("fs");
+const path = require ("path");
+const Engineer = require("./Lib/Engineer");
+const templates = path.resolve(__dirname, "../templates");
+const genHTML = (TeamArray) => {
+    const HTML = [];
+    HTML.push(
+        TeamArray
+        .filter((TeamArray)=>TeamArray.getRole()==="Manager")
+        .map((manager)=>renderManager(manager))
+    );
+    HTML.push(
+        TeamArray
+        .filter((TeamArray)=>TeamArray.getRole()==="Engineer")
+        .map((Engineer)=>renderEngineer(Engineer))
+
+    );
+    HTML.push(
+        TeamArray
+        .filter((TeamArray)=>TeamArray.getRole()==="Intern")
+        .map((Intern)=>renderIntern(Intern)) 
+    )
+
+return renderFullMarkdown(HTML.join(""));
+};
 `<!DOCTYPE html>
 <html lang="en">
 <head>

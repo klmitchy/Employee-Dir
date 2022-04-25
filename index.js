@@ -6,10 +6,11 @@ const fs = require('fs');
 const Engineer = require('./Lib/Engineer.js');
 const Intern = require('./Lib/Intern.js');
 const Manager = require('./Lib/Manager.js');
-const TeamArray = [];
-const GenHTML = require('./GenHTML.js');
+
 const genHTML = require('./GenHTML.js');
-let TeamComplete = false;
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "teamroster.html");
+const TeamArray = [];
 const validateinput = (userinput) =>{
     if (userinput ===""){
         return "please answer before proceeding";
@@ -17,16 +18,106 @@ const validateinput = (userinput) =>{
         return true;
     }
     };
+
+const managerprompt = () => {
+    return inquirer.prompt([
+      {
+          type: 'input',
+          name: 'name',
+          message: 'What is your name?',
+          validate: validateinput,
+      }, 
+      {
+        type: 'input',
+        name: 'ID',
+        message: 'What is your Employee ID?',
+        validate: validateinput,
+      },
+      {
+        type: 'input',
+        name: 'Email',
+        message: 'What is your email?',
+        validate: validateinput,
+      },
+      {
+        type: 'input',
+        name: 'officeNumber',
+        message: 'What is your Office Number?',
+        validate: validateinput,
+      },
+    ]).then(answers => {
+        const manager = new Manager(answers.name, answers.ID, answers.Email, answers.officeNumber)
+        TeamArray.push(manager);
+        promptMenu();
+    })
+};
+
+const promptMenu = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'employeeType',
+            message: 'What level of Employee would you like to add?',
+            choices: ["Manager", "Engineer", "Intern", "Team Complete"],
+          },
+
+    ]).then(userChoice => {
+        switch(userChoice.employeeType) {
+            case "Intern":
+                addIntern();
+                break;
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Team Complete":
+                buildTeam();
+                break;
+        }
+    });
+};
+
+const promptEngineer = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?',
+            validate: validateinput,
+        }, 
+        {
+          type: 'input',
+          name: 'ID',
+          message: 'What is your Employee ID?',
+          validate: validateinput,
+        },
+        {
+          type: 'input',
+          name: 'Email',
+          message: 'What is your email?',
+          validate: validateinput,
+        },
+        {
+          type: 'input',
+          name: 'github',
+          message: 'What is your Github profile?',
+          validate: validateinput,
+        },
+
+        
+    ]).then(answers => {
+        const engineer = new Engineer(answers.name, answers.ID, answers.Email, answers.github);
+        TeamArray.push(engineer);
+        promptMenu();
+    })
+};
+
+/*let TeamComplete = false;
+
 const init = async () => {
     await createManager();
     while (!TeamComplete){
         const typeofemployee = [
-            {
-                type: 'list',
-                name: 'employeeType',
-                message: 'What level of Employee would you like to add?',
-                choices: ["Manager", "Intern", "Engineer", "Team Complete"],
-              },
+            
 
         ];
     
@@ -43,7 +134,7 @@ if (employeeType === "Team Complete") {
     }
 }
 
-const HTML = genHTML(employees);
+const HTML = genHTML(TeamArray);
 fs.writeFileSync("employee-roster.html", HTML, (err) => {
     if (err){
         console.log(err);
@@ -60,21 +151,25 @@ const managerQuestions = [
         type: 'input',
         name: 'Name',
         message: 'What is your name?',
+        validate: validateinput,
       },
       {
         type: 'input',
         name: 'ID',
         message: 'What is your Employee ID?',
+        validate: validateinput,
       },
       {
         type: 'input',
         name: 'Email',
         message: 'What is your email?',
+        validate: validateinput,
       },
       {
         type: 'input',
         name: 'officeNumber',
         message: 'What is your Office Number?',
+        validate: validateinput,
       },
     ];
 
@@ -82,27 +177,86 @@ const managerQuestions = [
 
     const manager = new Manager(managerAnswers);
 
-    employees.push(manager);
-      
-      
-   /* ]).then(addEmployee => {
-        switch(addEmployee.list) {
-            case "Manager":
-                addManager();
-                break;
-            case "Intern":
-                addIntern();
-                break;
-            case "Engineer":
-                addEngineer();
-                break;
-            case "Team Complete":
-                buildTeam();
-                break;
-        }
-    }*/
+    TeamArray.push(manager);
+    
+const createEngineer = async () => {
+    const engineerQuestions = [
+        {
+            type: 'input',
+            name: 'Name',
+            message: 'What is your name?',
+            validate: validateinput,
+            },
+            {
+            type: 'input',
+            name: 'ID',
+            message: 'What is your Employee ID?',
+            validate: validateinput,
+            },
+            {
+            type: 'input',
+            name: 'Email',
+            message: 'What is your email?',
+            validate: validateinput,
+            },
+            {
+            type: 'input',
+            name: 'GitHub',
+            message: 'What is your Github profile?',
+            validate: validateinput,
+            },
+        ];
+        
+const engineerAnswers = await inquirer.prompt(engineerQuestions);
 
-)
+const engineer = new Engineer(engineerAnswers);
+
+TeamArray.push(engineer);
+        };
+
+const createIntern = async () => {
+    const internQuestions = [
+            {
+            type: 'input',
+            name: 'Name',
+            message: 'What is your name?',
+            validate: validateinput,
+            },
+            {
+            type: 'input',
+            name: 'ID',
+            message: 'What is your Employee ID?',
+            validate: validateinput,
+            },
+            {
+            type: 'input',
+            name: 'Email',
+            message: 'What is your email?',
+            validate: validateinput,
+            },
+            {
+            type: 'input',
+            name: 'School',
+            message: 'What University do you attend?',
+            validate: validateinput,
+            },
+        ];
+
+const internAnswers = await inquirer.prompt(internQuestions);
+
+const intern = new Intern(internAnswers);
+
+TeamArray.push(intern);
+    };
+
+init()
+         
+        
+    
+      
+   /* ])*/
+
+
 /*add new manager
     function addManager(){
         inquirer.prompt([
@@ -124,7 +278,7 @@ const managerQuestions = [
     }
 */
 
-//add new engineer
+/*//add new engineer
     function addEngineer(){
     inquirer.prompt([
     {   
