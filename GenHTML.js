@@ -1,5 +1,54 @@
 const generateTeam = (team) => {
-    console.log (team);
+    //console.log (team);
+    const html = [];
+    //console.log (html)
+    const generateManager = manager => {
+        let managerHtml = `
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">${manager.name}</div>
+        <div class="card-body">
+          <h5 class="card-title">${manager.id}</h5>
+          <p class="card-text">${manager.email}</p>
+          <p class="card-text">${manager.managerofficenumber}</p>
+          </div>
+        `;
+        html.push(managerHtml);
+    }
+    const generateEngineer = engineer => {
+        let engineerHtml = `
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">${engineer.name}</div>
+        <div class="card-body">
+          <h5 class="card-title">${engineer.id}</h5>
+          <p class="card-text">${engineer.email}</p>
+          <p class="card-text">${engineer.github}</p>
+          </div>
+        `;
+        html.push(engineerHtml);
+    }
+    const generateIntern = intern => {
+        let internHtml = `
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">${intern.name}</div>
+        <div class="card-body">
+          <h5 class="card-title">${intern.id}</h5>
+          <p class="card-text">${intern.email}</p>
+          <p class="card-text">${intern.school}</p>
+          </div>
+        `;
+        html.push(internHtml);
+}
+
+for (let i = 0; i<team.length; i++) {
+    if (team[i].getRole() === "Manager") {
+        generateManager(team[i]);
+    }
+    if (team[i].getRole() === "Engineer") {
+        generateEngineer(team[i]);
+    }
+    if (team[i].getRole()=== "Intern") {
+        generateIntern(team[i]);
+    }
 }
 
 /*const fs = require("fs");
@@ -46,11 +95,11 @@ return renderFullMarkdown(HTML.join(""));
       </div>
 
       <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header">${answers.Name}</div>
+        <div class="card-header">${manager.name}</div>
         <div class="card-body">
-          <h5 class="card-title">${answers.ID}</h5>
-          <p class="card-text">${answers.Email}</p>
-          <p class="card-text">${answers.ManagerOfficeNumber}</p>
+          <h5 class="card-title">${manager.id}</h5>
+          <p class="card-text">${manager.email}</p>
+          <p class="card-text">${manager.managerofficenumber}</p>
           <p class="card-text">${answers.school}</p>
           <p class="card-text">${answers.github}
         </div>
