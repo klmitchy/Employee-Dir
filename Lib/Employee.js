@@ -6,53 +6,22 @@ class Employee {
   }
 
   getName(){
-    return this.name
+    return this.name;
   }
 
   getID(){
-    return this.ID
+    return this.ID;
   }
 
   getEmail(){
-    return Email
+    return this.Email;
   }
 
   getRole(){
-    return Employee
+    return "Employee";
   }
 }
-module.export=Employee;
+module.exports=Employee;
   
-/*questions = [
-    inquirer
-    .prompt([
-      {
-        type: 'input',
-        name: 'Name',
-        message: 'What is your name?',
-      },
-      {
-        type: 'input',
-        name: 'ID',
-        message: 'What is your ID?',
-      },
-      {
-        type: 'input',
-        name: 'Email',
-        message: 'What is your email?',
-      },
-      
-    ])
-    
-    .then((answers) => {
-    
-        fs.writeFile(path.join(__dirname, 'dist/index.html'), generateREADME({...answers}), function(err){
-          if (err) {
-              console.log(err);
-          }
-          else{
-              console.log('addedData');
-          }
-      })
-  })]
-}*/ 
+ 
+

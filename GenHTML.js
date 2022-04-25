@@ -28,7 +28,7 @@ const genHTML = (data) =>
 </body>
 </html>`
 
-
+module.exports = genHTML
 
 
 /*1. Create file structure based on the readme.md file

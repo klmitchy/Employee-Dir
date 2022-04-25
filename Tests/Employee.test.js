@@ -15,7 +15,7 @@ test ("Make sure the Email value is grabbed from the getEmail METHOD",()=>{
     expect(Employee.getEmail().toBe("bob@hotmail.com"));
 });
 
-test ("MAke sure the role is grabbed from the getRole METHOD",()=>{
+test ("MAke sure the right role is grabbed from the getRole METHOD",()=>{
     expect(Employee.getRole().toBe("Employee"));
 });
 

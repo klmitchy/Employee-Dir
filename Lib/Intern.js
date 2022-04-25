@@ -1,4 +1,4 @@
-const Employee = require('./Lib/Employee.js');
+const Employee = require('./Employee.js');
 
 class Intern extends Employee {
   constructor(Name, ID, Email, School) {
@@ -12,8 +12,8 @@ getSchool(){
 }
 
 getRole(){
-  return "Intern"
+  return "Intern";
 }
 }
 
-module.export = Intern;
+module.exports = Intern;

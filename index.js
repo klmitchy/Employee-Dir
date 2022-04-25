@@ -1,26 +1,42 @@
 const inquirer = require('inquirer');
-const jest = require('jest')
 const path = require("path");
 const fs = require('fs');
 
-const Employee = require('./Lib/Employee.js');
-const Engineer = require('./Lib/Engineer.js');
-const Intern = require('./Lib/Intern.js');
-const Manager = require('./Lib/Manager.js');
+//const {Employee} = require('./Lib/Employee.js');
+const {Engineer} = require('./Lib/Engineer.js');
+const {Intern} = require('./Lib/Intern.js');
+const {Manager} = require('./Lib/Manager.js');
 const TeamArray = [];
 const GenHTML = require('./GenHTML.js');
 
-//const questions = () => {
-    //return 
-    inquirer.prompt([
-    {
+const questions = async () => {
+    const answers = await inquirer
+
+    .prompt([
+      {
+        type: 'input',
+        name: 'Name',
+        message: 'What is your name?',
+      },
+      {
+        type: 'input',
+        name: 'ID',
+        message: 'What is your ID?',
+      },
+      {
+        type: 'input',
+        name: 'Email',
+        message: 'What is your email?',
+      },
+      {
         type: 'list',
         name: 'AddEmployee',
         message: 'What level of Employee would you like to add?',
-        choices: ["Manager", "Intern", "Engineer", "Team Complete"]
-    }])
-    .then(userChoice => {
-        switch(userChoice.list) {
+        choices: ["Manager", "Intern", "Engineer", "Team Complete"],
+      }
+      
+    ]).then(addEmployee => {
+        switch(addEmployee.list) {
             case "Manager":
                 addManager();
                 break;
@@ -38,22 +54,28 @@ const GenHTML = require('./GenHTML.js');
 
 )
 //add new manager
-function addManager() {
-    inquirer.prompt([
-    {
-        type: "input",
-        name: "ManagerOfficeNumber",
-        message: "What is this Manager's Office Number?",
-    },
+    function addManager(){
+        inquirer.prompt([
+        {
+            type: "input",
+            name: "ManagerOfficeNumber",
+            message: "What is this Manager's Office Number?",
+        },
+    
+        ])
+            const NewManager = NewManager (
+                answers.name,
+                answers.id,
+                answers.email,
+                answers.ManagerOfficeNumber,
+            );
+            TeamArray.push(NewManager);
+            
+    }
 
-    ]).then(data =>{
-        const FreshManager = NewManager (data.ManagerOfficeNumber);
-        TeamArray.push(FreshManager);
-        addCards();
-    }),
 
 //add new engineer
-function addEngineer(){
+    function addEngineer(){
     inquirer.prompt([
     {   
         type: "input",
@@ -62,12 +84,16 @@ function addEngineer(){
 
     }, 
 
-    ]).then(data =>{
-        const FreshEngineer = NewEngineer (data.Github);
-        TeamArray.push(FreshEngineer);
-        addCards();
-    })
-}}
+    ])
+        const NewEngineer = NewEngineer (
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.Github,
+        );
+        TeamArray.push(NewEngineer);
+        }
+
 //add new intern
 function addIntern(){
     inquirer.prompt([
@@ -76,23 +102,25 @@ function addIntern(){
          name: "school",
          message: "What school do you go to?",
      },   
-    ]).then(data =>{
-        const FreshIntern = NewIntern (data.school);
-        TeamArray.push(FreshIntern);
-        addCards();
-    })
-
-}}
+    ])
+        const NewIntern = NewIntern (
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.school,
+        );
+        TeamArray.push(NewIntern);
+        }
+        
+    
 //team members complete
 function buildTeam(){
-    fs.writeFile(path.join(__dirname, 'dist/Roster.html'), GenHTML({...answers}), function(err){
+    fs.writeFileSync('dist/Roster.html'), GenHTML({...answers}), function(err){
     if (err) {
         console.log(err);
     }
     else{
         console.log('addedData');
     }
-})
-}
-
-//function addCards()
+    }
+}}
