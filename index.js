@@ -76,7 +76,7 @@ const promptMenu = () => {
     });
 };
 
-const promptEngineer = () => {
+const addEngineer = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -111,6 +111,49 @@ const promptEngineer = () => {
     })
 };
 
+const addIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?',
+            validate: validateinput,
+        }, 
+        {
+          type: 'input',
+          name: 'ID',
+          message: 'What is your Employee ID?',
+          validate: validateinput,
+        },
+        {
+          type: 'input',
+          name: 'Email',
+          message: 'What is your email?',
+          validate: validateinput,
+        },
+        {
+          type: 'input',
+          name: 'school',
+          message: 'What school do you attend?',
+          validate: validateinput,
+        },
+
+    ]).then(answers => {
+        const intern = new Intern(answers.name, answers.ID, answers.Email, answers.school);
+        TeamArray.push(intern);
+        promptMenu();
+    })
+};
+
+const buildTeam = () => {
+    
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR) 
+    }
+    fs.writeFiileSync(outputPath, genHTML(TeamArray), "utf-8");
+}
+
+managerprompt();
 /*let TeamComplete = false;
 
 const init = async () => {

@@ -1,4 +1,8 @@
-const fs = require("fs");
+const generateTeam = (team) => {
+    console.log (team);
+}
+
+/*const fs = require("fs");
 const path = require ("path");
 const Engineer = require("./Lib/Engineer");
 const templates = path.resolve(__dirname, "../templates");
