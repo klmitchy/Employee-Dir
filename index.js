@@ -71,7 +71,7 @@ const promptMenu = () => {
                 break;
             case "Team Complete":
                 buildTeam();
-                break;
+               // break;
         }
     });
 };
