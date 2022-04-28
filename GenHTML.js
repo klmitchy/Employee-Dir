@@ -1,4 +1,4 @@
-const generateTeam = (team) => {
+function GenHTML(team) {
     //console.log (team);
     const html = [];
     //console.log (html)
@@ -13,7 +13,7 @@ const generateTeam = (team) => {
           </div>
         `;
         html.push(managerHtml);
-    }
+    };
     const generateEngineer = engineer => {
         let engineerHtml = `
         <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
@@ -25,7 +25,7 @@ const generateTeam = (team) => {
           </div>
         `;
         html.push(engineerHtml);
-    }
+    };
     const generateIntern = intern => {
         let internHtml = `
         <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
@@ -37,24 +37,24 @@ const generateTeam = (team) => {
           </div>
         `;
         html.push(internHtml);
-}
+    };
 
-for (let i = 0; i<team.length; i++) {
-    if (team[i].getRole() === "Manager") {
-        generateManager(team[i]);
+    for (let i = 0; i < team.length; i++) {
+        if (team[i].getRole() === "Manager") {
+            generateManager(team[i]);
+        }
+        if (team[i].getRole() === "Engineer") {
+            generateEngineer(team[i]);
+        }
+        if (team[i].getRole() === "Intern") {
+            generateIntern(team[i]);
+        }
     }
-    if (team[i].getRole() === "Engineer") {
-        generateEngineer(team[i]);
-    }
-    if (team[i].getRole()=== "Intern") {
-        generateIntern(team[i]);
-    }
+    return html.join('');
 }
-return html.join('');
-
-module.exports = team =>{
-return 
-`<!DOCTYPE html>
+    module.exports = team => {
+        return
+        `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -68,16 +68,17 @@ return
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">My Team</h1>
+          ${GenHTML(team)}
         </div>
       </div>
 
       
     
 </body>
-</html>`
+</html>`;
 
-}}
+    };
+
 
 /*const fs = require("fs");
 const path = require ("path");

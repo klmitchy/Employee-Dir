@@ -1,15 +1,14 @@
 const inquirer = require('inquirer');
 const path = require("path");
 const fs = require('fs');
-
+const render = require('./GenHTML');
 //const Employee = require('../Lib/Employee.js');
 const Engineer = require('./Lib/Engineer.js');
 const Intern = require('./Lib/Intern.js');
 const Manager = require('./Lib/Manager.js');
 
 const GenHTML = require('./GenHTML.js');
-//const OUTPUT_DIR = path.resolve(__dirname, "output");
-//const outputPath = path.join(OUTPUT_DIR, "teamroster.html");
+
 const TeamArray = [];
 const validateinput = (userinput) =>{
     if (userinput ===""){
@@ -147,7 +146,7 @@ const addIntern = () => {
 
 const buildTeam = () => {
 
-    fs.writeFileSync('./dist/index.html', generateHTML(answers));
+    fs.writeFileSync('./dist/index.html', GenHTML(TeamArray),'utf-8');
     console.log('Successfully wrote to index.html');
    // catch((err) => console.error(err));
 };
