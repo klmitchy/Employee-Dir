@@ -7,7 +7,7 @@ const Engineer = require('./Lib/Engineer.js');
 const Intern = require('./Lib/Intern.js');
 const Manager = require('./Lib/Manager.js');
 
-const GenHTML = require('./GenHTML.js');
+//const GenHTML = require('./GenHTML');
 
 const TeamArray = [];
 const validateinput = (userinput) =>{
@@ -70,7 +70,7 @@ const promptMenu = () => {
                 break;
             case "Team Complete":
                 buildTeam();
-               // break;
+               //break;
         }
     });
 };
@@ -146,7 +146,7 @@ const addIntern = () => {
 
 const buildTeam = () => {
 
-    fs.writeFileSync('./dist/index.html', GenHTML(TeamArray),'utf-8');
+    fs.writeFileSync('./dist/index.html', render(TeamArray),'utf-8');
     console.log('Successfully wrote to index.html');
    // catch((err) => console.error(err));
 };
