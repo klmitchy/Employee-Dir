@@ -1,4 +1,4 @@
-function GenHTML(team) {
+function genHTML(team) {
     //console.log (team);
     const html = [];
     //console.log (html)
@@ -53,8 +53,9 @@ function GenHTML(team) {
     return html.join('');
 }
     module.exports = team => {
-        return
-        `<!DOCTYPE html>
+        console.log("team", team)
+        //return "hello"
+        return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -68,13 +69,12 @@ function GenHTML(team) {
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          ${GenHTML(team)}
         </div>
       </div>
 
-      
+     ${genHTML(team)} 
     
 </body>
 </html>`;
 
-    };
+   };

@@ -6,7 +6,7 @@ const render = require('./GenHTML');
 const Engineer = require('./Lib/Engineer.js');
 const Intern = require('./Lib/Intern.js');
 const Manager = require('./Lib/Manager.js');
-
+//console.log("render", render([]))
 //const GenHTML = require('./GenHTML');
 
 const TeamArray = [];
@@ -145,7 +145,7 @@ const addIntern = () => {
 };
 
 const buildTeam = () => {
-
+//console.log(render(TeamArray))
     fs.writeFileSync('./dist/index.html', render(TeamArray),'utf-8');
     console.log('Successfully wrote to index.html');
    // catch((err) => console.error(err));
